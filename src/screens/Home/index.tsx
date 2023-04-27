@@ -10,28 +10,33 @@ export const Homescreen = () => {
     const [Addtodo,setTodo]=useState<Todotype>(
       {
         title:"",
-        desc:""
+        desc:"",
       }
-    )
+    );
    const {todoList,setTodolist}=useContext(Store)
     const handler=(e:FormEvent<HTMLFormElement>)=>{
      e.preventDefault()
-     if(!Addtodo.title) return toast.error("Error 404 ! Amir nabashid")
-     
 
-       setTodolist([...todoList,Addtodo])
+     if(!Addtodo.title) return toast.error("Error 404 ! Amir nabashid");
      
+     setTodolist([...todoList,Addtodo]);
+     toast.success("Afrin pesar");
+     
+  setTodo({
+    title:"",
+    desc:"",
+  })
     }
 
     return ( 
         <form action="" onSubmit={(e:FormEvent<HTMLFormElement>)=>handler(e)}>
 
-            <Textfield onChange={(e:ChangeEvent<HTMLInputElement>)=>setTodo({
+            <Textfield value={Addtodo.title} onChange={(e:ChangeEvent<HTMLInputElement>)=>setTodo({
               ...Addtodo,
             title:e.target.value,
             })
             } className="bg-slate-400" type="text"/>
-             <Textfield onChange={(e:ChangeEvent<HTMLInputElement>)=>setTodo({
+             <Textfield value={Addtodo.desc} onChange={(e:ChangeEvent<HTMLInputElement>)=>setTodo({
               ...Addtodo,
             desc:e.target.value,
             })
